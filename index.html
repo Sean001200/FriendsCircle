@@ -3,60 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Simple Social Media Layout</title>
+    <title>Facebook Clone</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Header Section -->
     <header>
-        <h1>My Social Media</h1>
-        <nav>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Profile</a></li>
-                <li><a href="#">Friends</a></li>
-                <li><a href="#">Messages</a></li>
-                <li><a href="#">Settings</a></li>
-            </ul>
-        </nav>
+        <h1>Facebook Clone</h1>
     </header>
 
-    <main>
-        <section class="profile">
-            <h2>Your Profile</h2>
-            <div class="profile-info">
-                <img src="profile.jpg" alt="Profile Picture">
-                <p>Name: John Doe</p>
-                <p>Bio: Just a regular guy.</p>
-            </div>
-        </section>
+    <!-- Profile Section -->
+    <section class="profile">
+        <h2>Profile</h2>
+        <img src="profile.jpg" alt="Profile Picture">
+        <h3>John Doe</h3>
+        <p>Software Developer</p>
+    </section>
 
-        <section class="friends">
-            <h2>Your Friends</h2>
-            <ul>
-                <li>Friend 1</li>
-                <li>Friend 2</li>
-                <li>Friend 3</li>
-                <li>Friend 4</li>
-            </ul>
-        </section>
+    <!-- Friends Section -->
+    <section class="friends">
+        <h2>Friends</h2>
+        <ul>
+            <li>
+                <img src="friend1.jpg" alt="Friend 1">
+                <h3>Jane Doe</h3>
+            </li>
+            <li>
+                <img src="friend2.jpg" alt="Friend 2">
+                <h3>John Smith</h3>
+            </li>
+            <li>
+                <img src="friend3.jpg" alt="Friend 3">
+                <h3>Jane Smith</h3>
+            </li>
+        </ul>
+        <button id="add-friend">Add Friend</button>
+    </section>
 
-        <section class="posts">
-            <h2>Create a Post</h2>
-            <textarea placeholder="What's on your mind?"></textarea>
-            <button type="button">Post</button>
+    <!-- Post Section -->
+    <section class="post">
+        <h2>Post</h2>
+        <textarea id="post-text" placeholder="What's on your mind?"></textarea>
+        <button id="post-btn">Post</button>
+        <div id="post-container">
+            <!-- Posts will be displayed here -->
+        </div>
+    </section>
 
-            <h2>All Posts</h2>
-            <div class="post">
-                <p><strong>John Doe:</strong> Hello World!</p>
-            </div>
-            <div class="post">
-                <p><strong>Jane Smith:</strong> Have a great day!</p>
-            </div>
-        </section>
-    </main>
+    <!-- Script for adding friend and posting -->
+    <script>
+        // Add friend functionality
+        const addFriendBtn = document.getElementById('add-friend');
+        addFriendBtn.addEventListener('click', () => {
+            const friendName = prompt('Enter friend\'s name:');
+            const friendList = document.querySelector('.friends ul');
+            const friendListItem = document.createElement('li');
+            friendListItem.innerHTML = `
+                <img src="friend.jpg" alt="Friend">
+                <h3>${friendName}</h3>
+            `;
+            friendList.appendChild(friendListItem);
+        });
 
-    <footer>
-        <p>&copy; 2023 My Social Media</p>
-    </footer>
+        // Post functionality
+        const postBtn = document.getElementById('post-btn');
+        postBtn.addEventListener('click', () => {
+            const postText = document.getElementById('post-text').value;
+            const postContainer = document.getElementById('post-container');
+            const postCard = document.createElement('div');
+            postCard.classList.add('post-card');
+            postCard.innerHTML = `
+                <p>${postText}</p>
+                <button class="like-btn">Like</button>
+                <button class="comment-btn">Comment</button>
+                <div class="comment-container">
+                    <input type="text" placeholder="Comment">
+                    <button class="post-comment">Post</button>
+                    <div class="comment-list"></div>
+                </div>
+            `;
+            postContainer.appendChild(postCard);
+
+            // Like functionality
+            const likeBtn = postCard.querySelector('.like-btn');
+            likeBtn.addEventListener('click', () => {
+                likeBtn.textContent = 'Liked';
+                likeBtn.disabled = true;
+            });
+
+            // Comment functionality
+            const commentBtn = postCard.querySelector('.comment-btn');
+            commentBtn.addEventListener('click', () => {
+                const commentContainer = postCard.querySelector('.comment-container');
+                commentContainer.style.display = 'block';
+            });
+
+            const postCommentBtn = postCard.querySelector('.post-comment');
+            postCommentBtn.addEventListener('click', () => {
+                const commentText = postCard.querySelector('input').value;
+                const commentList = postCard.querySelector('.comment-list');
+                const commentItem = document.createElement('p');
+                commentItem.textContent = commentText;
+                commentList.appendChild(commentItem);
+                postCard.querySelector('input').value = '';
+            });
+        });
+    </script>
 </body>
 </html>
