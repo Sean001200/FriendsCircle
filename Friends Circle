@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Simple Social Media Layout</title>
+</head>
+<body>
+    <header>
+        <h1>My Social Media</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Profile</a></li>
+                <li><a href="#">Friends</a></li>
+                <li><a href="#">Messages</a></li>
+                <li><a href="#">Settings</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="profile">
+            <h2>Your Profile</h2>
+            <div class="profile-info">
+                <img src="profile.jpg" alt="Profile Picture">
+                <p>Name: John Doe</p>
+                <p>Bio: Just a regular guy.</p>
+            </div>
+        </section>
+
+        <section class="friends">
+            <h2>Your Friends</h2>
+            <ul>
+                <li>Friend 1</li>
+                <li>Friend 2</li>
+                <li>Friend 3</li>
+                <li>Friend 4</li>
+            </ul>
+        </section>
+
+        <section class="posts">
+            <h2>Create a Post</h2>
+            <textarea placeholder="What's on your mind?"></textarea>
+            <button type="button">Post</button>
+
+            <h2>All Posts</h2>
+            <div class="post">
+                <p><strong>John Doe:</strong> Hello World!</p>
+            </div>
+            <div class="post">
+                <p><strong>Jane Smith:</strong> Have a great day!</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 My Social Media</p>
+    </footer>
+</body>
+</html>
